@@ -469,44 +469,43 @@ public class ArraysAll {
 
     public static void main(String[] args) {
         // Scanner sc = new Scanner(System.in);
-        int a[] = { 1, 2, 3, 4, 5, 6, 7 };
+        // int a[] = { 1, 2, 3, 4, 5, 6, 7 };
         // int n = a.length;
         // AliceBob(a, n);
         // int k = 2;
         // printArray(a)
         // System.out.println(slowfast(a));
-        rotate(a, -1);
-        // arraySum(
-        // rotate(a, 2);
-        // System.out.println();
-        // removingDuplicates(a);
-        // System.out.println(booyerMooreVote(a));
-        // System.out.println(booyerMooreVote(a));
-        // rotate(a, -1);
-        // findIndex(a, 3);
-        // DutchNationalFlag(a);
-        // printRepeatValIndex(a, 2);
-        // printArray(a);
-        // System.out.println(printArray(a));
-        // try1(a, 3);
-        // printArray(a);
-        // insertionsort(a);
-        // kRotation(a, k);
-        // Selectionsort(a);
-        // Bubblesort(a);
-        // midElementFind(a);
-        // RainTrapper(a);
-        // KthRotation(a, 4);
-        // ReverseArray(a);
-        // Subarrays(a);
-        // KadansAlgorithm(a);
-        // int arr_size = a.length;
-        // DutchNationalFlag(a);
-        // MovingZeroesLast(a);
-        // RemovingDuplicates(a);
-        // maxConsecutive(a);
-        // System.out.println(RainTrapper(a));
 
     }
+    // arraySum(
+    // rotate(a, 2);
+    // System.out.println();
+    // removingDuplicates(a);
+    // System.out.println(booyerMooreVote(a));
+    // System.out.println(booyerMooreVote(a));
+    // rotate(a, -1);
+    // findIndex(a, 3);
+    // DutchNationalFlag(a);
+    // printRepeatValIndex(a, 2);
+    // printArray(a);
+    // System.out.println(printArray(a));
+    // try1(a, 3);
+    // printArray(a);
+    // insertionsort(a);
+    // kRotation(a, k);
+    // Selectionsort(a);
+    // Bubblesort(a);
+    // midElementFind(a);
+    // RainTrapper(a);
+    // KthRotation(a, 4);
+    // ReverseArray(a);
+    // Subarrays(a);
+    // KadansAlgorithm(a);
+    // int arr_size = a.length;
+    // DutchNationalFlag(a);
+    // MovingZeroesLast(a);
+    // RemovingDuplicates(a);
+    // maxConsecutive(a);
+    // System.out.println(RainTrapper(a));
 
 }
