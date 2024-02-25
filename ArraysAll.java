@@ -148,12 +148,11 @@ public class ArraysAll {
     }
 
     // -------------Printing Sub all SUB ARRAYS in java----------------//
-    public static void Subarrays(int a[]) {
-
+    public static void subarrays(int a[]) {
         for (int i = 0; i < a.length; i++) {
             for (int j = i; j < a.length; j++) {
                 for (int k = i; k <= j; k++) {
-                    System.out.print(" " + a[k]);
+                    System.out.print(a[k] + " ");
                 }
                 System.out.println();
             }
@@ -174,7 +173,7 @@ public class ArraysAll {
     }
 
     // ------------------Dutch national flag--------------//
-    static void DutchNationalFlag(int a[]) {
+    static void dutchNationalFlag(int a[]) {
         int low = 0;
         int high = a.length - 1;
         int mid = 0;
@@ -199,8 +198,8 @@ public class ArraysAll {
     }
 
     // -------------------Moving zeoes at last in the Array------(DSA)------//
-    public static void MovingZeroesLast(int a[]) {
-        Scanner sc = new Scanner(System.in);
+    public static void movingZeroesLast(int a[]) {
+
         int r = 0;
         int l = 0;
         while (r < a.length) {
@@ -216,6 +215,7 @@ public class ArraysAll {
         for (int i = 0; i < a.length; i++) {
             System.out.print(" " + a[i]);
         }
+
     }
 
     // ----------Boyer Moore Algoriythm-------------//
@@ -457,55 +457,106 @@ public class ArraysAll {
 
     }
 
-    public static void KadansAlgorithm2(int a[]) {
-        int cur = a[0];
-        int max = a[0];
-        for (int i = 0; i < a.length; i++) {
-            cur = Math.max(cur, a[i] + cur);
+    // public static void minLastDigit(int a[]) {
+    // int res = 9;
+    // for (int i = 0; i < a.length; i++) {
+    // int sum = a[i] % 10;
+    // if (sum == 0) {
+    // System.out.println(a[i] + " is min");
+    // break;
+    // }
 
+    // else {
+    // res = Math.min(res, sum);
+    // i++;
+    // }
+
+    // }
+    // System.out.println();
+    // }
+
+    public static void slideMaxK_Nums(int a[], int k) {
+        int sum = 0;
+        int left = 0;
+        int max = 0;
+        for (int i = left; i < k; i++) {
+            sum += a[i];
         }
+        max = Math.max(max, sum);
+        while (k < a.length) {
+            sum += a[k];
+            sum -= a[left];
+            left++;
+            k++;
+            max = Math.max(max, sum);
+        }
+        System.out.println(max);
+    }
+
+    public static void threeK(int a[]) {
+        int left = 0;
+        int sum = 0;
+        int max1 = 0;
+        for (int i = left; i < a.length - 3; i++) {
+            for (int j = i; j < i + 3; j++) {
+                sum += a[i];
+            }
+            max1 = Math.max(max1, sum);
+        }
+        System.out.println(max1);
 
     }
 
     public static void main(String[] args) {
         // Scanner sc = new Scanner(System.in);
-        // int a[] = { 1, 2, 3, 4, 5, 6, 7 };
+        int a[] = { 2, 0, 2, 2, 1, 0 };
+        // kad(a);
+        slideMaxK_Nums(a, 3);
+        threeK(a);
+        // minLastDigit(a);
+        // slideMax3NUms(a);
+        // prac(a);
         // int n = a.length;
         // AliceBob(a, n);
         // int k = 2;
         // printArray(a)
         // System.out.println(slowfast(a));
-
+        // kd(a);
+        // kad(a);
+        // movingZeroesLast(a);
+        // arraySum(
+        // rotate(a, 2);
+        // System.out.println();
+        // removingDuplicates(a);
+        // System.out.println(booyerMooreVote(a));
+        // System.out.println(booyerMooreVote(a));
+        // rotate(a, -1);
+        // findIndex(a, 3);
+        // DutchNationalFlag(a);
+        // printRepeatValIndex(a, 2);
+        // printArray(a);
+        // System.out.println(printArray(a));
+        // try1(a, 3);
+        // printArray(a);
+        // insertionsort(a);
+        // kRotation(a, k);
+        // Selectionsort(a);
+        // Bubblesort(a);
+        // midElementFind(a);
+        // RainTrapper(a);
+        // KthRotation(a, 4);
+        // ReverseArray(a);
+        // Subarrays(a);
+        // KadansAlgorithm(a);
+        // int arr_size = a.length;
+        // DutchNationalFlag(a);
+        // MovingZeroesLast(a);
+        // RemovingDuplicates(a);
+        // maxConsecutive(a);
+        // System.out.println(RainTrapper(a));
+        // KadansAlgorithm(a);
+        // KadansAlgorithm(a);
+        // subarrays(a);
+        // dutchNationalFlag(a);
     }
-    // arraySum(
-    // rotate(a, 2);
-    // System.out.println();
-    // removingDuplicates(a);
-    // System.out.println(booyerMooreVote(a));
-    // System.out.println(booyerMooreVote(a));
-    // rotate(a, -1);
-    // findIndex(a, 3);
-    // DutchNationalFlag(a);
-    // printRepeatValIndex(a, 2);
-    // printArray(a);
-    // System.out.println(printArray(a));
-    // try1(a, 3);
-    // printArray(a);
-    // insertionsort(a);
-    // kRotation(a, k);
-    // Selectionsort(a);
-    // Bubblesort(a);
-    // midElementFind(a);
-    // RainTrapper(a);
-    // KthRotation(a, 4);
-    // ReverseArray(a);
-    // Subarrays(a);
-    // KadansAlgorithm(a);
-    // int arr_size = a.length;
-    // DutchNationalFlag(a);
-    // MovingZeroesLast(a);
-    // RemovingDuplicates(a);
-    // maxConsecutive(a);
-    // System.out.println(RainTrapper(a));
-
 }
