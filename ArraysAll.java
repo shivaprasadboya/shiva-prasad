@@ -110,7 +110,7 @@ public class ArraysAll {
     }
 
     // -------(more time complexity)-------------K th position rotation-----------//
-    public static void KthRotation(int a[], int k) {
+    public static void leftKthRotation(int a[], int k) {
         int b = a.length;
         k = k % b;
         if (k < 0) {
@@ -218,91 +218,6 @@ public class ArraysAll {
 
     }
 
-    // ----------Boyer Moore Algoriythm-------------//
-    public static int booyerMooreVote(int nums[]) {
-        // int votes = 0;
-        // int maj = -1;
-        // for (int i = 0; i < a.length; i++) {
-        // if (votes == 0) {
-        // maj = a[i];
-        // votes = 1;
-        // } else if (maj != a[i]) {
-        // votes--;
-        // } else {
-        // votes++;
-        // }
-        // }
-        // int count = 0;
-        // for (int i = 0; i < a.length; i++) {
-        // if (maj == a[i]) {
-        // count++;
-        // }
-        // if (count > (a.length) / 2) {
-        // System.out.println(maj);
-        // }
-        // }
-        int maj = -1;
-        int count = 0;
-        int votes = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (votes == 0) {
-                maj = nums[i];
-                votes = 1;
-            } else if (nums[i] == maj)
-                votes++;
-            else
-                votes--;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == maj) {
-                count++;
-            }
-        }
-        if (count > nums.length / 2) {
-            return maj;
-        } else {
-
-            return -1;
-        }
-    }
-
-    // ----------Removing Duplicates in an Array--[Sorted ArrayOnly]------//
-
-    public static void removingDuplicates(int a[]) {
-        Arrays.sort(a);
-        int d = 0;
-        int i = 1;
-        while (i < a.length) {
-            if (a[d] != a[i]) {
-                d++;
-                a[d] = a[i];
-            }
-            i++;
-        }
-        for (int k = 0; k <= d; k++) {
-            System.out.print(" " + a[k]);
-        }
-    }
-    // -----------max consecutive Range-----------------//
-
-    public static void maxConsecutive(int a[]) {
-        int count = 0;
-        int max = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == 1) {
-                count++;
-
-            } else if (a[i] == 0) {
-                count = 0;
-
-            }
-            max = Math.max(max, count);
-        }
-
-        System.out.println(max);
-
-    }
-
     // ------------------Mid elemenet find in slow fast pointer-----------//
     public static void midElementFind(int a[]) {
         int slow = 0;
@@ -402,14 +317,13 @@ public class ArraysAll {
         int sum = 0;
 
         int high = a.length - 1;
-        int count = a.length;
         while (low <= high) {
             sum += a[low] + a[high];
             low++;
             high--;
 
         }
-        if ((count & 1) == 1)
+        if ((a.length & 1) == 1)
             System.out.println(sum - a[a.length / 2]);
         else
             System.out.println(sum);
@@ -431,6 +345,176 @@ public class ArraysAll {
         return slow;
 
     }
+
+    // public static void minLastDigit(int a[]) {
+    // int res = 9;
+    // for (int i = 0; i < a.length; i++) {
+    // int sum = a[i] % 10;
+    // if (sum == 0) {
+    // System.out.println(a[i] + " is min");
+    // break;
+    // }
+
+    // else {
+    // res = Math.min(res, sum);
+    // i++;
+    // }
+
+    // }
+    // System.out.println();
+    // }
+
+    public static void threeK(int a[]) {
+        int left = 0;
+        int sum = 0;
+        int max1 = 0;
+        for (int i = left; i < a.length - 3; i++) {
+            for (int j = i; j < i + 3; j++) {
+                sum += a[i];
+            }
+            max1 = Math.max(max1, sum);
+        }
+        System.out.println(max1);
+
+    }
+
+    // ----------Boyer Moore Algoriythm-------------//
+    public static void booyerMooreVote(int a[]) {
+        int votes = 0;
+        int maj = -1;
+        for (int i = 0; i < a.length; i++) {
+            if (votes == 0) {
+                maj = a[i];
+                votes = 1;
+            } else if (maj != a[i])
+                votes--;
+            else
+                votes++;
+        }
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == maj)
+                count++;
+        }
+        if (count > a.length / 2)
+            System.out.println(maj);
+    }
+
+    public static void primeOrNot(int a[]) {
+        int n = 113;
+        int count = 0;
+        for (int i = 2; i <= Math.sqrt(n / 2); i++) {
+            if (n % i == 0)
+                count++;
+        }
+        if (count == 0)
+            System.out.println("prime");
+        else
+            System.out.println("not prime");
+
+    }
+
+    public static void kHighestEle(int a[]) {
+        int count = 0;
+        int i = a.length - 2;
+        int j = a.length - 1;
+        while (i >= 0) {
+            if (count == 0) {
+                System.out.println(a[j]);
+                break;
+            } else if (a[j] - a[i] == 0) {
+                i--;
+                j--;
+            } else if (a[j] != a[i]) {
+                count--;
+                i--;
+                j--;
+
+            }
+
+        }
+
+    }
+
+    public static void kthLargest(int a[], int k) {
+        Arrays.sort(a);
+        int count = k;
+        int i = a.length - 2;
+        int j = a.length - 1;
+        if (k == 0 || k == 1) {
+            System.out.println(a[a.length - 1]);
+        }
+        while (i >= 0) {
+            if (a[i] == a[j]) {
+                i -= 1;
+            } else if (a[i] != a[j]) {
+                count -= 1;
+                j = i;
+                if (count == 1) {
+                    System.err.println(a[i]);
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void z(int a[]) {
+
+        Scanner s = new Scanner(System.in);
+        int max = 0;
+        int max2 = 0;
+        int n = 9;
+        System.out.println("please enter the nth max value");
+        int k = s.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] > max) {
+                max = a[i];
+            }
+        }
+        for (int j = 0; j < k - 1; j++) {
+
+            for (int i = 0; i < n; i++) {
+                if (a[i] > max2 && a[i] < max) {
+                    max2 = a[i];
+
+                }
+
+            }
+
+            max = max2;
+            max2 = 0;
+        }
+        System.out.println(max);
+
+    }
+
+    // public static void k(int a[]) {
+    // int a1[] = { 2, 3, 7, 9, 60 };
+    // int b[] = { 0, 0, 0, 0, 0 };
+    // int n = 5;
+    // int mm = 1000;
+    // for (int h = 0; h < n; h++) {
+    // int max = 0;
+
+    // for (int i = 0; i < n; i++) {
+    // if (a1[i] / 10 == 0) {
+    // if (a1[i] > max && max < mm)
+    // max = a1[i];
+    // } else if (a1[i] / 10 != 0) {
+    // if (a1[i] / 10 > max && max < mm) {
+    // max = a1[i];
+    // }
+    // }
+    // }
+    // b[h] = max;
+    // mm = max;
+
+    // }
+    // for (int i = 0; i < n; i++) {
+    // System.out.print(b[i] + " ");
+    // }
+    // }
     // --------------Rotate k times-------------(algorithm)-------//
 
     public static void reverse(int a[], int start, int end) {
@@ -457,31 +541,154 @@ public class ArraysAll {
 
     }
 
-    // public static void minLastDigit(int a[]) {
-    // int res = 9;
-    // for (int i = 0; i < a.length; i++) {
-    // int sum = a[i] % 10;
-    // if (sum == 0) {
-    // System.out.println(a[i] + " is min");
-    // break;
-    // }
+    public static void rightKthRotation(int a[], int k) {
+        int b = a.length;
+        k = k % b;
+        if (k < 0) {
+            k = k + b;
+        }
+        for (int i = 0; i < k; i++) {
+            int temp = a[a.length - 1];
+            for (int j = a.length - 1; j >= 0; j--) {
+                a[j] = a[j - 1];
 
-    // else {
-    // res = Math.min(res, sum);
-    // i++;
-    // }
+            }
+            a[0] = temp;
 
-    // }
-    // System.out.println();
-    // }
+        }
+        for (int i = 0; i < b; i++) {
+
+            System.out.print(" " + a[i]);
+        }
+    }
+
+    public static void negativePrint(int a[]) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < 0)
+                System.out.print(a[i] + " ");
+        }
+
+    }
+
+    public static void slideNegativePrint(int a[], int k) {
+        int left = 0;
+        int right = k;
+        while (right < a.length) {
+
+        }
+    }
 
     public static void slideMaxK_Nums(int a[], int k) {
+        // int sum = 0;
+        // int left = 0;
+        // int max = 0;
+        // for (int i = left; i < k; i++) {
+        // sum += a[i];
+        // }
+        // max = Math.max(max, sum);
+        // while (k < a.length) {
+        // sum += a[k];
+        // sum -= a[left];
+        // left++;
+        // k++;
+        // max = Math.max(max, sum);
+        // }
+        // System.out.println(max);
         int sum = 0;
         int left = 0;
+        // int right = k;
         int max = 0;
         for (int i = left; i < k; i++) {
             sum += a[i];
         }
+        max = Math.max(max, sum);
+        while (k < a.length) {
+            sum += a[k];
+            sum -= a[left];
+            k++;
+            left++;
+
+            max = Math.max(max, sum);
+        }
+        System.out.println(max);
+    }
+
+    public static void negToPos(int a[]) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < 0)
+                a[i] = a[i] * -1;
+        }
+        printArray(a);
+
+    }
+
+    public static void maxRange(int a[]) {
+        int max = 0;
+        int rem = 0;
+        int index = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] / 10 != 0) {
+                rem = a[i] / 10;
+                max = Math.max(max, rem);
+            } else if (a[i] / 10 == 0) {
+                max = Math.max(max, a[i]);
+            }
+
+        }
+        System.out.println(max);
+
+    }
+
+    public static void consecutiveCount(int a[]) {
+        int maj = 0;
+        int count = 0;
+        int max = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (count == 0) {
+                maj = a[i];
+                count = 1;
+            } else if (maj != a[i]) {
+                count = 0;
+            } else if (maj == a[i]) {
+                count++;
+            }
+            max = Math.max(max, count);
+        }
+        System.out.println(max);
+
+    }
+    // -----------max consecutive Range-----------------//
+
+    public static void maxConsecutive(int a[]) {
+        int count = 0;
+        int max = 1;
+        int maj = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == 1) {
+                count += 1;
+
+            } else if (maj != a[i]) {
+                count = 0;
+            } else if (a[i] == 0) {
+                count += 1;
+
+            }
+            max = Math.max(max, count);
+        }
+
+        System.out.println(max);
+
+    }
+
+    public static void slide(int a[]) {
+        int left = 0;
+        int max = 0;
+        int k = 3;
+        int sum = 0;
+        // for (int i = left; i < k; i++) {
+        // sum += a[i];
+        // }
+        sum = a[0] + a[1] + a[2];
         max = Math.max(max, sum);
         while (k < a.length) {
             sum += a[k];
@@ -492,30 +699,146 @@ public class ArraysAll {
         }
         System.out.println(max);
     }
+    // ----------Removing Duplicates in an Array--[Sorted ArrayOnly]------//
 
-    public static void threeK(int a[]) {
-        int left = 0;
-        int sum = 0;
-        int max1 = 0;
-        for (int i = left; i < a.length - 3; i++) {
-            for (int j = i; j < i + 3; j++) {
-                sum += a[i];
+    public static void removingDuplicates(int a[]) {
+        // Arrays.sort(a);
+        // int d = 0;
+        // int i = 1;
+        // while (i < a.length) {
+        // if (a[d] != a[i]) {
+        // d++;
+        // a[d] = a[i];
+        // }
+        // i++;
+        // }
+        // for (int k = 0; k <= d; k++) {
+        // System.out.print(" " + a[k]);
+        // }
+        Arrays.sort(a);
+        int d = 0;
+        int i = 1;
+        while (i < a.length) {
+            if (a[d] != a[i]) {
+                d++;
+                a[d] = a[i];
             }
-            max1 = Math.max(max1, sum);
+            i++;
         }
-        System.out.println(max1);
+        for (int k = 0; k <= d; k++) {
+            System.out.print(a[k] + " ");
+        }
+        // return i;
+
+    }
+
+    public static int duplicateHash(int a[]) {
+        HashMap<Interger, Interger> map = new HashMap<>();
+        int d = 0;
+        int i = 1;
+        while (i < a.length) {
+            if (a[d] != a[i]) {
+                d++;
+                a[d] = a[i];
+            }
+            i++;
+        }
+        return d + 1;
+
+    }
+
+    public static int anagram(String pat, String txt) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < pat.length(); i++) {
+            map.put(pat.charAt(i), map.getOrDefault(pat.charAt(i), 0) + 1);
+        }
+        int count = pat.length();
+        int ans = 0;
+        int left = 0;
+        int right = 0;
+        while (right < txt.length()) {
+            char c1 = txt.charAt(right);
+            if (map.containsKey(c1)) {
+                map.put(c1, map.get(c1) - 1);
+                if (map.get(c1) == 0)
+                    count--;
+            }
+            if (right - left + 1 == map.size()) {
+                if (count == 0)
+                    ans++;
+                char c2 = txt.charAt(left);
+                if (map.containsKey(c2)) {
+                    map.put(c2, map.get(c2) + 1);
+                    if (map.get(c2) == 1)
+                        count++;
+                }
+                left++;
+            }
+            right++;
+        }
+        return ans;
+
+    }
+
+    public static void anagram2(String a, String b) {
+        if (a.length() != b.length()) {
+            System.out.println("not anagram");
+
+        }
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length(); i++) {
+            map.put(a.charAt(i), map.getOrDefault(a.charAt(i), 0) + 1);
+        }
+        // System.out.println(map);
+        int right = 0;
+        int count = a.length();
+        while (right < b.length()) {
+            char c1 = b.charAt(right);
+            if (map.containsKey(c1)) {
+                count--;
+            }
+            right++;
+        }
+        if (count == 0) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("no");
+        }
 
     }
 
     public static void main(String[] args) {
-        // Scanner sc = new Scanner(System.in);
-        int a[] = { 2, 0, 2, 2, 1, 0 };
+        // Scanner sc = new Scanner(System.in);s
+        int a[] = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+        // rightKthRotation(a, 2);
+        // slide(a);
+        String pat = "cat";
+        String txt = "aca";
+        anagram2(pat, txt);
+        // System.out.println(anagram(pat, txt));
+        // System.out.println(duplicateHash(a));
+        // removingDuplicates(a);
+        // leftKthRotation(a, 2);
+        // maxConsecutive(a);
+        // consecutiveCount(a);
         // kad(a);
-        slideMaxK_Nums(a, 3);
-        threeK(a);
-        // minLastDigit(a);
+        // negToPos(a);
+        // maxRange(a);
+        // negativePrint(a);
+        // maxRange(a);
+        // rotate(a, -3);
+        // Scanner sc = new Scanner(System.in);
+        // z(a);
+        // k(a);
+        // kthLargest(a, 4);
+        // slideMaxK_Nums(a, 3);
+        // threeK(a);
+        // minLastDigit(a);s
         // slideMax3NUms(a);
         // prac(a);
+
+        // printArray();
+
         // int n = a.length;
         // AliceBob(a, n);
         // int k = 2;
@@ -532,6 +855,7 @@ public class ArraysAll {
         // System.out.println(booyerMooreVote(a));
         // rotate(a, -1);
         // findIndex(a, 3);
+        // booyerMooreVote(a);
         // DutchNationalFlag(a);
         // printRepeatValIndex(a, 2);
         // printArray(a);
@@ -558,5 +882,6 @@ public class ArraysAll {
         // KadansAlgorithm(a);
         // subarrays(a);
         // dutchNationalFlag(a);
+
     }
 }
