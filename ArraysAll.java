@@ -30,31 +30,6 @@ public class ArraysAll {
         printArray(a);
     }
 
-    // ---------------insertion sort--------------------//
-    public static int insertionsort(int a[]) {
-
-        int b = a.length;
-        // for (int i = 0; i < b; i++) {
-        // System.out.print(" " + a[i]);
-        // }
-        System.out.println();
-        for (int i = 1; i < b; i++) {
-            int temp = a[i];
-            int j = i - 1;
-            while (j >= 0 && a[j] > temp) {
-
-                a[j + 1] = a[j];
-                j--;
-            }
-            a[j + 1] = temp;
-
-        }
-        for (int i = 0; i < b; i++) {
-            System.out.print(" " + a[i]);
-        }
-        return b;
-    }
-
     // --------------------selection sort------------------//
     public static void Selectionsort(int a[]) {
 
@@ -73,40 +48,6 @@ public class ArraysAll {
             System.out.print(" " + a[i]);
         }
 
-    }
-    // ---------------------rain water trapping ------------------------//
-
-    public static int RainTrapper(int a[]) {
-
-        int b = a.length;
-        int res = 0;
-
-        for (int i = 1; i < b; i++) {
-            int lb = a[i];
-            for (int j = 0; j < i; j++) {
-                if (a[j] > lb) {
-                    lb = a[j];
-
-                }
-
-            }
-            int rb = a[i];
-            for (int j = i + 1; j < b; j++) {
-                if (a[j] > rb) {
-                    rb = a[j];
-                }
-            }
-
-            int wl;
-            if (rb > lb) {
-                wl = lb;
-            } else {
-                wl = rb;
-            }
-            int tr = wl - a[i];
-            res = res + tr;
-        }
-        return res;
     }
 
     // -------(more time complexity)-------------K th position rotation-----------//
@@ -250,48 +191,6 @@ public class ArraysAll {
 
     }
 
-    public static int[] printRepeatValIndex(int a[], int target) {
-        Arrays.sort(a);
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == target) {
-
-                return new int[] { i };
-            }
-        }
-        return a;
-    }
-
-    public static int xyz(int nums[]) {
-
-        int maj = -1;
-        int votes = 0;
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-
-            if (votes == 0) {
-                maj = nums[i];
-                votes = 1;
-            } else if (maj != nums[i]) {
-                votes--;
-            } else {
-                votes++;
-
-            }
-        }
-        for (int i = 0; i < nums.length; i++) {
-
-            if (maj == nums[i]) {
-                count++;
-            }
-
-        }
-        if (count > nums.length / 2) {
-            return maj;
-        }
-
-        return -1;
-    }
-
     public static void AliceBob(int a[], int n) {
         Scanner sc = new Scanner(System.in);
         // System.out.println("enyeh t value:");
@@ -378,28 +277,6 @@ public class ArraysAll {
 
     }
 
-    // ----------Boyer Moore Algoriythm-------------//
-    public static void booyerMooreVote(int a[]) {
-        int votes = 0;
-        int maj = -1;
-        for (int i = 0; i < a.length; i++) {
-            if (votes == 0) {
-                maj = a[i];
-                votes = 1;
-            } else if (maj != a[i])
-                votes--;
-            else
-                votes++;
-        }
-        int count = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == maj)
-                count++;
-        }
-        if (count > a.length / 2)
-            System.out.println(maj);
-    }
-
     public static void primeOrNot(int a[]) {
         int n = 113;
         int count = 0;
@@ -412,50 +289,6 @@ public class ArraysAll {
         else
             System.out.println("not prime");
 
-    }
-
-    public static void kHighestEle(int a[]) {
-        int count = 0;
-        int i = a.length - 2;
-        int j = a.length - 1;
-        while (i >= 0) {
-            if (count == 0) {
-                System.out.println(a[j]);
-                break;
-            } else if (a[j] - a[i] == 0) {
-                i--;
-                j--;
-            } else if (a[j] != a[i]) {
-                count--;
-                i--;
-                j--;
-
-            }
-
-        }
-
-    }
-
-    public static void kthLargest(int a[], int k) {
-        Arrays.sort(a);
-        int count = k;
-        int i = a.length - 2;
-        int j = a.length - 1;
-        if (k == 0 || k == 1) {
-            System.out.println(a[a.length - 1]);
-        }
-        while (i >= 0) {
-            if (a[i] == a[j]) {
-                i -= 1;
-            } else if (a[i] != a[j]) {
-                count -= 1;
-                j = i;
-                if (count == 1) {
-                    System.err.println(a[i]);
-                    break;
-                }
-            }
-        }
     }
 
     public static void z(int a[]) {
@@ -515,60 +348,14 @@ public class ArraysAll {
     // System.out.print(b[i] + " ");
     // }
     // }
-    // --------------Rotate k times-------------(algorithm)-------//
 
-    public static void reverse(int a[], int start, int end) {
-        while (start < end) {
-            int temp = a[start];
-            a[start] = a[end];
-            a[end] = temp;
-            start++;
-            end--;
-        }
+    // public static void negativePrint(int a[]) {
+    // for (int i = 0; i < a.length; i++) {
+    // if (a[i] < 0)
+    // System.out.print(a[i] + " ");
+    // }
 
-    }
-
-    public static void rotate(int a[], int k) {
-
-        if (k < 0) {
-            k = k + a.length;
-        }
-        k = k % a.length;
-        reverse(a, 0, k - 1);
-        reverse(a, k, a.length - 1);
-        reverse(a, 0, a.length - 1);
-        printArray(a);
-
-    }
-
-    public static void rightKthRotation(int a[], int k) {
-        int b = a.length;
-        k = k % b;
-        if (k < 0) {
-            k = k + b;
-        }
-        for (int i = 0; i < k; i++) {
-            int temp = a[a.length - 1];
-            for (int j = a.length - 1; j >= 0; j--) {
-                a[j] = a[j - 1];
-
-            }
-            a[0] = temp;
-
-        }
-        for (int i = 0; i < b; i++) {
-
-            System.out.print(" " + a[i]);
-        }
-    }
-
-    public static void negativePrint(int a[]) {
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] < 0)
-                System.out.print(a[i] + " ");
-        }
-
-    }
+    // }
 
     public static void slideNegativePrint(int a[], int k) {
         int left = 0;
@@ -639,47 +426,6 @@ public class ArraysAll {
 
     }
 
-    public static void consecutiveCount(int a[]) {
-        int maj = 0;
-        int count = 0;
-        int max = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (count == 0) {
-                maj = a[i];
-                count = 1;
-            } else if (maj != a[i]) {
-                count = 0;
-            } else if (maj == a[i]) {
-                count++;
-            }
-            max = Math.max(max, count);
-        }
-        System.out.println(max);
-
-    }
-    // -----------max consecutive Range-----------------//
-
-    public static void maxConsecutive(int a[]) {
-        int count = 0;
-        int max = 1;
-        int maj = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == 1) {
-                count += 1;
-
-            } else if (maj != a[i]) {
-                count = 0;
-            } else if (a[i] == 0) {
-                count += 1;
-
-            }
-            max = Math.max(max, count);
-        }
-
-        System.out.println(max);
-
-    }
-
     public static void slide(int a[]) {
         int left = 0;
         int max = 0;
@@ -699,41 +445,9 @@ public class ArraysAll {
         }
         System.out.println(max);
     }
-    // ----------Removing Duplicates in an Array--[Sorted ArrayOnly]------//
-
-    public static void removingDuplicates(int a[]) {
-        // Arrays.sort(a);
-        // int d = 0;
-        // int i = 1;
-        // while (i < a.length) {
-        // if (a[d] != a[i]) {
-        // d++;
-        // a[d] = a[i];
-        // }
-        // i++;
-        // }
-        // for (int k = 0; k <= d; k++) {
-        // System.out.print(" " + a[k]);
-        // }
-        Arrays.sort(a);
-        int d = 0;
-        int i = 1;
-        while (i < a.length) {
-            if (a[d] != a[i]) {
-                d++;
-                a[d] = a[i];
-            }
-            i++;
-        }
-        for (int k = 0; k <= d; k++) {
-            System.out.print(a[k] + " ");
-        }
-        // return i;
-
-    }
 
     public static int duplicateHash(int a[]) {
-        HashMap<Interger, Interger> map = new HashMap<>();
+        // HashMap<Interger, Interger> map = new HashMap<>();
         int d = 0;
         int i = 1;
         while (i < a.length) {
@@ -747,15 +461,507 @@ public class ArraysAll {
 
     }
 
+    // ---------------anagram comapring two equla length strings-------//
+    public static void anagram2(String a, String b) {
+        if (a.length() != b.length()) {
+            System.out.println("not anagram");
+
+        }
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length(); i++) {
+            map.put(a.charAt(i), map.getOrDefault(a.charAt(i), 0) + 1);
+        }
+        System.out.println(map);
+        int right = 0;
+        int count = a.length();
+        while (right < b.length()) {
+            char c1 = b.charAt(right);
+            // if (map.containsKey(c1)) {
+            // count--;
+            // }
+            if (map.containsKey(c1) && map.get(c1) > 0) {
+                map.put(c1, map.get(c1) - 1);
+                count--;
+            }
+            right++;
+        }
+        if (count == 0) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("no");
+        }
+
+    }
+
+    public static ArrayList<Integer> findFirstNegative(int[] nums, int k) {
+        ArrayList<Integer> result = new ArrayList<>();
+        ArrayList<Integer> window = new ArrayList<>();
+
+        int left = 0;
+        int right = 0;
+
+        while (right < nums.length) {
+            if (nums[right] < 0) {
+                window.add(nums[right]);
+            }
+
+            if (right - left + 1 == k) {
+                if (window.isEmpty()) {
+                    result.add(0);
+                } else {
+                    result.add(window.get(0));
+                    if (nums[left] == window.get(0)) {
+                        window.remove(0);
+                    }
+                }
+                left++;
+            }
+
+            right++;
+        }
+
+        return result;
+    }
+
+    // --------------Kth highest elemenrt in an array-----//
+    public static int kthLargest(int a[], int k) {
+        Arrays.sort(a);
+        int count = k;
+        int i = a.length - 2;
+        int j = a.length - 1;
+        if (k == 0 || k == 1) {
+            System.out.println(a[a.length - 1]);
+        }
+        while (i >= 0) {
+            if (a[i] == a[j]) {
+                i -= 1;
+            } else if (a[i] != a[j]) {
+                count -= 1;
+                j = i;
+                if (count == 1) {
+                    // System.err.println(a[i]);
+                    break;
+                }
+            }
+
+        }
+        return i + 1;
+
+    }
+    // -----------Buy and sell stocks O(n square)-------//
+
+    public static void buyAndSellStocks(int a[]) {
+        int max = 0;
+        int ans = 0;
+        for (int i = 0; i < a.length - 1; i++) {
+            max = a[i];
+            for (int j = i + 1; j < a.length; j++) {
+                max = Math.max(a[j], max - a[i]);
+            }
+            ans = Math.max(max, ans);
+        }
+        System.out.println(ans);
+    }
+
+    public static void maxProfit(int[] a) {
+        int l = a.length;
+
+        int maxProfit = 0;
+        int minPrice = a[0];
+        for (int i = 1; i < l; i++) {
+            maxProfit = Math.max(maxProfit, a[i] - minPrice);
+            minPrice = Math.min(minPrice, a[i]);
+        }
+
+        System.out.println(maxProfit);
+    }
+
+    public static void lenFind(int a[], int sum) {
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        int sum1 = 0;
+        int max = 0;
+        while (right < a.length) {
+            sum1 += a[right];
+            count++;
+            System.out.println(count);
+
+            if (sum1 == sum) {
+                max = Math.max(max, count);
+                left++;
+                right = left;
+                sum1 = 0;
+                count = 0;
+            }
+            // right++;
+            if (sum1 > sum) {
+                sum1 -= a[left];
+
+                left++;
+
+                count--;
+            }
+            right++;
+
+        }
+        System.out.println(max);
+    }
+
+    public static int[] printRepeatValIndex(int a[], int target) {
+        Arrays.sort(a);
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == target) {
+
+                return new int[] { i };
+            }
+        }
+        return a;
+    }
+
+    public static int pairsRem(int a[]) {
+
+        if (a.length <= 2)
+            return a.length;
+
+        // int index = 2;
+
+        // // for (int i = 2; i < a.length; i++) {
+        // // if (a[i] != a[index - 2]) {
+        // // a[index] = a[i];
+        // // index++;
+        // // }
+        // // }
+
+        // return index;
+
+        int left = 2;
+        int right = 2;
+        while (right < a.length) {
+            if (a[right] != a[left - 2]) {
+                a[left] = a[right];
+                left++;
+            }
+            right++;
+        }
+        return left;
+
+    }
+
+    public static void reverse1(int a[], int start, int end) {
+        while (start < end) {
+            int temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+
+    }
+
+    public static void rotate1(int a[], int k) {
+        k = k * -1;
+        if (k < 0) {
+            k = k + a.length;
+        }
+        k = k % a.length;
+        reverse1(a, 0, k - 1);
+        reverse1(a, k, a.length - 1);
+        reverse1(a, 0, a.length - 1);
+    }
+
+    public static boolean stepsToReach(int a[]) {
+        int i = 0;
+
+        while (i < a.length) {
+            if (a[i] < a.length && a[i] != 0) {
+                i = a[i];
+            }
+            if (i == a.length - 1 || i > a.length || i == a.length)
+                return true;
+
+        }
+        return false;
+
+    }
+    // ---------------------rain water trapping ------------------------//
+
+    public static int rainTrapper(int a[]) {
+        int res = 0;
+        for (int i = 1; i < a.length; i++) {
+            int lb = a[i];
+            for (int j = 0; j < i; j++)
+                if (a[j] > a[i])
+                    lb = a[j];
+            int rb = a[i];
+            for (int j = i + 1; j < a.length; j++)
+                if (a[j] > rb)
+                    rb = a[j];
+            int wl;
+            if (rb > lb)
+                wl = lb;
+            else
+                wl = rb;
+            int tr = wl - a[i];
+            res += tr;
+
+        }
+        return res;
+    }
+
+    // ----------Boyer Moore Algoriythm-------------//
+    public static void booyerMooreVote(int a[]) {
+
+        int votes = 0;
+        int maj = -1;
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (votes == 0) {
+                maj = a[i];
+                votes = 1;
+            } else if (a[i] == maj) {
+                votes++;
+            } else {
+                votes--;
+            }
+
+        }
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == maj) {
+                count++;
+            }
+        }
+        if (count > a.length / 2)
+            System.out.println(maj);
+    }
+    // -----------max consecutive Range-----------------//
+
+    public static void maxConsecutive(int a[]) {
+        int count = 0;
+        int max = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == 1) {
+                count++;
+            } else
+                count = 0;
+            max = Math.max(max, count);
+        }
+        System.out.println(max);
+
+    }
+
+    // -------Buy and sell Stocks---------------//
+    public static void buyAndSellStocks2(int a[]) {
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+        int profit = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            min = Math.min(min, a[i]);
+            max = a[i] - min;
+            profit = Math.max(profit, max);
+        }
+        System.out.println(profit);
+
+    }
+    // ----------Removing Duplicates in an Array--[Sorted ArrayOnly]------//
+
+    public static int removingDuplicates(int a[]) {
+        Arrays.sort(a);
+        int d = 0;
+        int i = 1;
+        while (i < a.length) {
+            if (a[d] != a[i]) {
+                d++;
+                a[d] = a[i];
+            }
+            i++;
+        }
+        return d + 1;
+        // for (int k = 0; k <= d; k++) {
+        // System.out.print(a[k] + " ");
+        // }
+        // // return i;
+    }
+
+    // ---------------right rotate------------//
+    public static void rightKthRotation(int a[], int k) {
+        if (k < 0) {
+            k = k + a.length;
+        }
+        k = k % a.length;
+        for (int i = 0; i < k; i++) {
+            int temp = a[a.length - 1];
+            for (int j = a.length - 1; j > 0; j--) {
+                a[j] = a[j - 1];
+            }
+            a[0] = temp;
+        }
+        printArray(a);
+    }
+
+    public static void negativePrint(int a[]) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length; i++) {
+            if (map.get(i) < 0) {
+                map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+            }
+        }
+        // System.out.println(map);
+        printArray(a);
+
+    }
+
+    // -----------special count O(n square)----------//
+    public static void specialCount(int a[]) {
+        int even = 0;
+        int odd = 0;
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            int temp = a[i];
+            for (int j = i; j < a.length - 1; j++) {
+                a[j] = a[j + 1];
+            }
+            for (int j = 0; j < a.length - 1; j++) {
+                if (j % 2 == 0)
+                    even += a[j];
+                else
+                    odd += a[j];
+            }
+            System.out.println(even + " " + odd);
+            if (even == odd)
+                count++;
+            for (int j = a.length - 1; j > i; j--) {
+                a[j] = a[j - 1];
+            }
+            a[i] = temp;
+            odd = 0;
+            even = 0;
+        }
+
+        System.out.println(count);
+
+    }
+
+    public static void prefix(int a[]) {
+        Scanner sc = new Scanner(System.in);
+        int pre[] = new int[a.length];
+        pre[0] = a[0];
+        for (int i = 1; i < a.length; i++) {
+            pre[i] = a[i] + pre[i - 1];
+        }
+        printArray(pre);
+        int q = 4;
+        int b[][] = new int[q][2];
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < 2; j++) {
+                b[i][j] = sc.nextInt();
+
+            }
+        }
+        for (int i = 0; i < q; i++) {
+            if (b[i][0] == 0)
+                System.out.println(pre[b[i][1]]);
+            else {
+                System.out.println(pre[b[i][1]] - pre[b[i][0] - 1]);
+            }
+        }
+    }
+
+    // ---------------insertion sort--------------------//
+    public static int[] insertionsort(int a[]) {
+
+        int b = a.length;
+
+        System.out.println();
+        for (int i = 1; i < b; i++) {
+            int temp = a[i];
+            int j = i - 1;
+            while (j >= 0 && a[j] > temp) {
+
+                a[j + 1] = a[j];
+                j--;
+            }
+            a[j + 1] = temp;
+
+        }
+        ArrayList<Integer> al = new ArrayList<>();
+
+        for (int i = 0; i < b; i++) {
+            al.add(a[i]);
+        }
+        return a;
+    }
+
+    // --------------Rotate k times-------------(algorithm)-------//
+    public static void rotate(int a[], int k) {
+        k = k * -1;
+        if (k < 0) {
+            k = k + a.length;
+        }
+        k = k % a.length;
+        reverse(a, 0, k - 1);
+        reverse(a, k, a.length - 1);
+        reverse(a, 0, a.length - 1);
+        printArray(a);
+
+    }
+
+    public static void reverse(int a[], int start, int end) {
+
+        while (start < end) {
+            int temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    // ------------Anagram-------------//
+
     public static int anagram(String pat, String txt) {
+
+        // HashMap<Character, Integer> map = new HashMap<>();
+        // for (int i = 0; i < pat.length(); i++) {
+        // map.put(pat.charAt(i), map.getOrDefault(pat.charAt(i), 0) + 1);
+
+        // }
+        // int count = map.size();
+        // int ans = 0;
+        // int left = 0;
+        // int right = 0;
+        // while (right < txt.length()) {
+        // char c1 = txt.charAt(right);
+        // if (map.containsKey(c1)) {
+        // map.put(c1, map.get(c1) - 1);
+        // if (map.get(c1) == 0) {
+        // count--;
+        // }
+
+        // }
+        // if (right - left + 1 == map.size()) {
+        // if (count == 0)
+        // ans++;
+        // char c2 = txt.charAt(left);
+        // if (map.containsKey(c2)) {
+        // map.put(c2, map.get(c2) + 1);
+        // if (map.get(c2) == 1)
+        // count++;
+        // }
+        // left++;
+        // }
+        // right++;
+        // }
+        // return ans;
+        // ----------------
         HashMap<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < pat.length(); i++) {
             map.put(pat.charAt(i), map.getOrDefault(pat.charAt(i), 0) + 1);
         }
-        int count = pat.length();
-        int ans = 0;
+        int count = map.size();
         int left = 0;
         int right = 0;
+        int ans = 0;
         while (right < txt.length()) {
             char c1 = txt.charAt(right);
             if (map.containsKey(c1)) {
@@ -770,6 +976,7 @@ public class ArraysAll {
                 if (map.containsKey(c2)) {
                     map.put(c2, map.get(c2) + 1);
                     if (map.get(c2) == 1)
+
                         count++;
                 }
                 left++;
@@ -777,44 +984,190 @@ public class ArraysAll {
             right++;
         }
         return ans;
+    }
+
+    public static void kHighestEle(int a[], int k) {
+        Arrays.sort(a);
+        // System.out.println(a);
+        printArray(a);
+        int count = k;
+        int right = a.length - 2;
+        int left = a.length - 1;
+        if (k == 1)
+            System.out.println(a[a.length - 1]);
+        while (right >= 0) {
+            if (a[left] == a[right])
+                right--;
+            else if (a[right] != a[left]) {
+                left = right;
+
+                count--;
+                if (count == 1) {
+                    System.out.println(a[right]);
+                    break;
+                }
+
+            }
+
+        }
 
     }
 
-    public static void anagram2(String a, String b) {
-        if (a.length() != b.length()) {
-            System.out.println("not anagram");
+    public static void countArea(int a[]) {
+        int sum = 0;
+        int max = 0;
+        for (int i = 1; i < a.length; i++) {
+            int lb = a[i];
+            for (int j = 0; j < i; j++) {
+                if (a[j] > lb)
+                    lb = a[j];
+
+            }
+            int rb = a[i];
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] > rb)
+                    rb = a[j];
+            }
+            sum = (lb + rb) / 2;
+            System.out.println(lb + " " + rb);
+            // sum = sum * 2;
+            max = Math.max(max, sum);
 
         }
-        HashMap<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < a.length(); i++) {
-            map.put(a.charAt(i), map.getOrDefault(a.charAt(i), 0) + 1);
+        System.out.println(max);
+
+    }
+
+    public static void oddCount(int a[]) {
+        // int maj = -1;
+        // int votes = 0;
+        // int l = 0;
+        // int r = 0;
+        // int count = 0;
+        // while (r < a.length) {
+        // if (a[l] == a[r]) {
+        // count++;
+        // } else if (a[r] != a[l]) {
+        // if (count % 2 != 0) {
+        // System.out.println(a[r]);
+        // count = 0;
+        // }
+        // l++;
+        // }
+        // r++;
+        // }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length; i++) {
+            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
         }
-        // System.out.println(map);
-        int right = 0;
-        int count = a.length();
-        while (right < b.length()) {
-            char c1 = b.charAt(right);
-            if (map.containsKey(c1)) {
-                count--;
+
+        for (int i : map.keySet()) {
+            if (map.get(i) % 2 != 0) {
+                System.out.println(i);
             }
-            right++;
         }
-        if (count == 0) {
-            System.out.println("Anagram");
-        } else {
-            System.out.println("no");
+    }
+
+    public static void nextGreater(int a[]) {
+        Stack<Integer> st = new Stack<>();
+        int next[] = new int[a.length];
+        for (int i = a.length - 1; i >= 0; i--) {
+            while (!st.isEmpty() && a[i] >= a[st.peek()]) {
+                st.pop();
+            }
+            if (st.isEmpty())
+                // System.out.println("-1");
+                next[i] = -1;
+            else
+                next[i] = a[st.peek()];
+            st.push(i);
+        }
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(next[i] + " ");
         }
 
     }
 
     public static void main(String[] args) {
-        // Scanner sc = new Scanner(System.in);s
-        int a[] = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+        // // Scanner sc = new Scanner(System.in);s
+        int a[] = { 6, 9, 2, 0, 8, 1, 3 };
+        nextGreater(a);
+        // countArea(a);
+        // oddCount(a);
+        // kHighestEle(a, 2);
+        // eveodd(a)
+        // oddCount(a);
+        // rotate(a, 2);
+        // // System.out.println(insertionsort(a));
+
+        // lSumRsum(a);
+        // String pat = "tgz";
+        // sumBro(a);
+        // prefix(a);
+
+        // eveodd(a);
+        // int even = 0;
+        // int odd = 0;
+        // // if (a.length % 2 == 0)
+        // for (int i = 0, j = a.length - 1; i < a.length / 2 || j > (a.length / 2);
+        // j--, i++) {
+        // even += a[i];
+        // odd += a[j];
+
+        // }
+        // if (a.length % 2 == 0)
+        // odd -= a[a.length / 2];
+
+        // System.out.println(even + " " + odd);
+        // specialCount(a);
+        // // negativePrint(a);
+        // String txt = "tqzzrtgznrftg";
+        // System.out.println(anagram(pat, txt));
         // rightKthRotation(a, 2);
+        // maxConsecutive(a);
+        // String pat = "abc";
+        // String txt = "abcdacbac";
+        // System.out.println(anagram(pat, txt));
+
+        // buyAndSellStocks2(a);
+        // System.out.println(removingDuplicates(a));
+        // booyerMooreVote(a);
+        // System.out.println(rainTrapper(a));
+
+        // int[][] a = { { 0, 1 }, { 1, 4 }, { 2, 5 }, { 3, 6 } };
+        // ]\TwoDprint(a);
+        // // reverse(a, 0, 0);
+        // // rotate(a,/ -3);
+        // // buyAndSellStocks2(a);
+        // stepsToReach(a);
+        // System.out.println(RainTrapper(a));
+        // int n = 33;
+        // int ans = 100 - n;
+
+        // if ((ans % 10) >= 5) {
+        // ans = ans + (10 - (ans % 10));
+        // } else {
+        // ans = ans - (ans % 10);
+        // }
+        // System.out.println(ans);
+
+        // printArray(a);
+
+        // kHighestEle(a);
+        // System.out.println(pairsRem(a));
+        // printArray(a);
+
+        // rightKthRotation(a, 2);
+        // buyAndSellStocks(a);
+        // lenFind(a, 12);
+        // System.out.println(printRepeatValIndex(a, 2));
+        // maxProfit(a);
+
         // slide(a);
-        String pat = "cat";
-        String txt = "aca";
-        anagram2(pat, txt);
+        // lenFind(a, 5);
+        // System.out.println(kthLargest(a, 2));
+
+        // System.out.println(findFirstNegative(a, 3));
         // System.out.println(anagram(pat, txt));
         // System.out.println(duplicateHash(a));
         // removingDuplicates(a);
@@ -882,6 +1235,33 @@ public class ArraysAll {
         // KadansAlgorithm(a);
         // subarrays(a);
         // dutchNationalFlag(a);
+        // rearrangeArray(a, 5);
 
     }
+
+    static void rearrangeArray(int arr[], int n) {
+
+        Arrays.sort(arr);
+
+        int[] temp = new int[n];
+
+        int index = 0;
+
+        for (int i = 0, j = n - 1; i <= n / 2 || j > n / 2; i++, j--) {
+            if (index < n) {
+                temp[index] = arr[i];
+                index++;
+            }
+
+            if (index < n) {
+                temp[index] = arr[j];
+                index++;
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+            arr[i] = temp[i];
+        printArray(temp);
+    }
+
 }
